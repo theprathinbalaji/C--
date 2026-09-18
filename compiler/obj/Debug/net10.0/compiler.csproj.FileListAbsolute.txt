@@ -1,0 +1,15 @@
+c:\Users\Prathin\Desktop\Projects\C--\compiler\bin\Debug\net10.0\compiler.exe
+c:\Users\Prathin\Desktop\Projects\C--\compiler\bin\Debug\net10.0\compiler.deps.json
+c:\Users\Prathin\Desktop\Projects\C--\compiler\bin\Debug\net10.0\compiler.runtimeconfig.json
+c:\Users\Prathin\Desktop\Projects\C--\compiler\bin\Debug\net10.0\compiler.dll
+c:\Users\Prathin\Desktop\Projects\C--\compiler\bin\Debug\net10.0\compiler.pdb
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.AssemblyInfoInputs.cache
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.AssemblyInfo.cs
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.csproj.CoreCompileInputs.cache
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.sourcelink.json
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.dll
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\refint\compiler.dll
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.pdb
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\compiler.genruntimeconfig.cache
+c:\Users\Prathin\Desktop\Projects\C--\compiler\obj\Debug\net10.0\ref\compiler.dll
