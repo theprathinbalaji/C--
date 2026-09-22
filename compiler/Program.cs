@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace Microsoft
 {
@@ -20,12 +21,12 @@ namespace Microsoft
                 while(true)
                 {
                    var token = lexer.NextToken();
-                   if (token.Kind == SyntaxKind.EndOfFileToken)
+                    if (token.Kind == SyntaxKind.EndOfFileToken)
                         break;
                     Console.Write($"{token.Kind}: '{token.Text}'");
                     if (token.Value != null)
                     {
-                        Console.Write($"{token.Value}");
+                        Console.Write($"  {token.Value}");
                     }
                     Console.WriteLine();
 
@@ -45,14 +46,16 @@ namespace Microsoft
         SlashToken,
         OpenToken,
         CloseToken,
-        BadToken
+        BadToken,
+
+        NumberExpressionSyntax, 
+        BinaryExpression
     }
     class SyntaxToken
     {   
         public SyntaxKind Kind{get;}
         public int Position{get;}
         public string Text{get;}
-        
         public object Value{get;}
 
 
@@ -102,7 +105,7 @@ namespace Microsoft
                 var start = position;
 
                 while (char.IsDigit(Current))
-                Next();
+                    Next();
 
                 var length = position - start;
                 var msg = text.Substring(start,length);
@@ -156,9 +159,78 @@ namespace Microsoft
         }
 
     }
-    class parser
+
+    abstract class SyntaxNode
+    {
+        public abstract SyntaxKind Kind {get;}
+    }
+
+    abstract class ExpressionSyntax : SyntaxNode
     {
         
+    }
+
+    sealed class NumberExpressionSyntax : ExpressionSyntax
+    {
+        public NumberExpressionSyntax (SyntaxToken numerToken)
+        {
+            
+        }
+        public override SyntaxKind Kind => SyntaxKind.NumberExpressionSyntax;
+        public SyntaxToken NumberToken {get;}
+
+    }
+
+    sealed class BinaryExpressionSyntax : ExpressionSyntax
+    {
+        public BinaryExpressionSyntax(ExpressionSyntax left, SyntaxNode operatorToken, ExpressionSyntax right)
+        {
+            Left = left;
+            Right = right;
+            OperatorToken = operatorToken;
+        }
+
+        public override SyntaxKind Kind => SyntaxKind.BinaryExpression;
+        public ExpressionSyntax Left {get;}
+        public ExpressionSyntax Right {get;}
+        public SyntaxNode OperatorToken {get;}
+
+    }
+
+    class Parser
+    {   private readonly SyntaxToken[] _tokens;
+        private int _position;
+        public Parser(string text)
+        {
+            var tokens = new List<SyntaxToken>();
+            var lexer = new Lexer(text);
+            SyntaxToken token;
+
+            do
+            {
+                token = lexer.NextToken();
+
+                if(token.Kind!=SyntaxKind.WhiteSpaceToken && token.Kind!=SyntaxKind.BadToken)
+                {
+                  tokens.Add(token);  
+                }
+
+            }while (token.Kind != SyntaxKind.EndOfFileToken);
+
+            _tokens = tokens.ToArray();
+        }
+
+        private SyntaxToken Peek(int offset)
+        {
+            var index = _position+offset;
+            if(index>=_tokens.Length)
+            {
+                return _tokens[_tokens.Length-1];
+            }
+            return _tokens[index];
+        }
+
+        private SyntaxToken Current => Peek(0);
     }
 
 }
